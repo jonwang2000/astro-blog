@@ -11,4 +11,5 @@ export default defineConfig({
     },
   },
   integrations: [sitemap()],
+  base: "/astro-blog",
 });
