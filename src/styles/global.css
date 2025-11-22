@@ -1,12 +1,12 @@
-/* 
+/*
 This global.css takes the styling from Bear Blog and adapts it for use in Astro.
 Source: https: //github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
 */
 
 :root {
   --width: 800px;
-  --font-main: Verdana, sans-serif;
-  --font-secondary: Verdana, sans-serif;
+  --font-main: "Jetbrains Mono", sans-serif;
+  --font-secondary: "Jetbrains Mono", sans-serif;
   --font-scale: 1em;
   --background-color: #fff;
   --heading-color: #222;
@@ -18,13 +18,13 @@ Source: https: //github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd
   --blockquote-color: #222;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background-color: #01242e;
+    --background-color: #121317;
     --heading-color: #eee;
     --text-color: #ddd;
     --link-color: #8cc2dd;
-    --visited-color: #8b6fcb;
+    --visited-color: #6275d1;
     --code-background-color: #0d1117;
     --code-color: #ddd;
     --blockquote-color: #ccc;
@@ -65,13 +65,44 @@ a:hover {
   text-decoration: underline;
 }
 
-nav a {
-  margin-right: 8px;
+nav > ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+nav li {
+  list-style-type: none;
+}
+
+nav li:not(:last-child) {
+  border-right: 1px blue dotted;
+}
+
+nav a,
+nav span {
+  padding: 0px 24px 0px 0px;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard */
+}
+
+nav span {
+  cursor: pointer;
 }
 
 strong,
 b {
   color: var(--heading-color);
+}
+
+header {
+  margin: 0;
+  padding: 0;
+  gap: 0;
 }
 
 button {
@@ -100,7 +131,7 @@ pre {
   padding: 20px;
 }
 
-*:not(pre)>code {
+*:not(pre) > code {
   font-family: monospace;
   padding: 2px;
   background-color: var(--code-background-color);
@@ -187,4 +218,8 @@ ul.blog-posts li a:visited {
 /* search */
 form {
   line-height: 1;
+}
+
+.search-bar {
+  padding-top: 24px;
 }

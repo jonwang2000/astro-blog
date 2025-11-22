@@ -1,12 +1,17 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Nav from "../components/Nav.astro";
+import { SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import "@fontsource/jetbrains-mono";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title="Home" description={SITE_DESCRIPTION} />
@@ -16,30 +21,37 @@ import Nav from "../components/Nav.astro";
       <Nav />
     </Header>
     <main>
-      <h1>Welcome to Astro Bear Blog Theme</h1>
-      <h2>A perfect pairing</h2>
+      <h1>
+        hello, I'm <a href="https://www.linkedin.com/in/jonathanwang2000/"
+          >jonathan</a
+        >
+      </h1>
+      <h3>welcome to my website</h3>
       <p>
-        Bring the simple and clean <a href="https://bearblog.dev/">Bear Blog</a>
-        theme to your <a href="https://astro.build/">Astro</a> site. Astro's excellent
-        developer experience and Bear Blog's user-friendly design together create
-        a seamless website.
+        I'm a waterloo graduate currently working in San Francisco at <a
+          href="https://withpersona.com/">persona identities.</a
+        >
+        Previously I worked at <a href="https://scale.ai">scale ai.</a>
       </p>
-      <p>Give it a try now!</p>
-      <h3>Features</h3>
-      <ul>
-        <li>Make use of Bear Blog's amazing design</li>
-        <li>Small webpage sizes (~290B for this page)</li>
-        <li>
-          Add blog posts by adding the Markdown files in the <code
-            >src/content/blog</code
-          > directory
-        </li>
-        <li>SEO-friendly with canonical URLs and OpenGraph data</li>
-        <li>Filter your blog posts by using tags</li>
-        <li>Use DuckDuckGo to search your blog</li>
-        <li>Automatically generated RSS feed and sitemap</li>
+      <p>
+        This is my little site to write some thoughts/notes that I think might
+        be interesting to share on the internet.
+      </p>
+      <h3>latest writings</h3>
+      <ul class="blog-posts">
+        {
+          posts.map((post) => (
+            <li>
+              <span>
+                <i>
+                  <FormattedDate date={post.data.pubDate} />
+                </i>
+              </span>
+              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            </li>
+          ))
+        }
       </ul>
     </main>
-    <Footer />
   </body>
 </html>

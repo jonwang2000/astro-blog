@@ -1,7 +1,19 @@
-<nav>
-  <p>
-    <a href="/">Home</a>
-    <a href="/blog">Blog</a>
-    <a href="/rss.xml">RSS</a>
-  </p>
+<nav class="nav-container">
+  <ul>
+    <li><span id="thumbs-toggle">👍</span></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/rss.xml">RSS</a></li>
+  </ul>
 </nav>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("thumbs-toggle");
+
+    el.addEventListener("click", () => {
+      const next = el.textContent === "👍" ? "👎" : "👍";
+      el.textContent = next;
+    });
+  });
+</script>

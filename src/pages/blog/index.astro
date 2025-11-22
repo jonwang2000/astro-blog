@@ -1,20 +1,19 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import SearchBar from "../../components/SearchBar.astro";
 import Nav from "../../components/Nav.astro";
 
 const posts = (await getCollection("blog")).sort(
-  (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 
 const uniqueTags = [
   ...new Set(
-    posts.flatMap((post) => post.data.tags).filter((tag) => tag !== undefined)
+    posts.flatMap((post) => post.data.tags).filter((tag) => tag !== undefined),
   ),
 ].sort();
 ---
@@ -54,6 +53,5 @@ const uniqueTags = [
         }
       </div>
     </main>
-    <Footer />
   </body>
 </html>
