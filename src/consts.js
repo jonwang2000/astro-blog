@@ -3,5 +3,5 @@
 
 export const SITE_TITLE = "Jonathan's Blog";
 export const SITE_DESCRIPTION = "Astro Bear Blog Theme!";
-export const SITE_URL = "http://jonwang2000.github.io";
+export const SITE_URL = "http://jonathanwang.dev";
 export const SEARCH_URL = "https://duckduckgo.com";
